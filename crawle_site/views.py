@@ -13,20 +13,16 @@ from rest_framework.views import APIView
 class CrawleView(APIView):
 	def get(self,request):
 		data = request.GET
-		print("****")
 		datas = {"results": "res"}
 		return Response(datas)
 
 	def post(self,request):
-		print("..... In view ..........")
 		data = request.data
 		url = data.get('url')
 		level = data.get('level')
-		print(level)
 		href_links = []
 		image_urls = []
 		search_domain = urlparse(url).hostname
-		print(search_domain)
 
 
 		## Setup for scrapping tool
@@ -38,9 +34,11 @@ class CrawleView(APIView):
 		# image_links = selector.xpath('//img/@src').getall()
 		for link in href_link_total:
 			if not (urlparse(link).hostname):
-				href_links.append(url+link)
+				if not (url+link) in href_links:
+					href_links.append(url+link)
 			elif search_domain in link:
-				href_links.append(link)
+				if not link in href_links:
+					href_links.append(link)
 			else:
 				print(link)
 		if level == '2':
@@ -53,9 +51,11 @@ class CrawleView(APIView):
 			image_links = selector.xpath('//img/@src').getall()
 			for link in href_link_total:
 				if not (urlparse(link).hostname):
-					href_links.append(url+link)
+					if not (url+link) in href_links:
+						href_links.append(url+link)
 				elif search_domain in link:
-					href_links.append(link)
+					if not link in href_links:
+						href_links.append(link)
 				else:
 					print(link)
 			for im in image_links:
@@ -75,9 +75,11 @@ class CrawleView(APIView):
 				image_links = selector.xpath('//img/@src').getall()
 				for link in href_link_total:
 					if not (urlparse(link).hostname):
-						href_links.append(url+link)
+						if not (url+link) in href_links:
+							href_links.append(url+link)
 					elif search_domain in link:
-						href_links.append(link)
+						if not link in href_links:
+							href_links.append(link)
 					else:
 						print(link)
 				for im in image_links:
@@ -88,12 +90,5 @@ class CrawleView(APIView):
 							image_urls.append(url+im)
 					elif search_domain in im:
 						image_urls.append(im)
-			# print(href_menu_link_total)
-		# print('*****************************href_links************************************')
-		# print(href_links)
-		# print('*****************************/href_links************************************')
-		# print('*****************************image_links************************************')
-		# print(image_links)
-		# print('*****************************/image_links************************************')
 		datas = {"href_links": href_links,"image_urls":image_urls}
 		return Response(datas)
