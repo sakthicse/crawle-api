@@ -1,0 +1,7 @@
+[django]
+secret_key = g&6s!a7ow1o0+1u**&40z0lv1qlx+bj!==cac31n&s+ll8pq1p
+MYSQL_DB_NAME = 
+MYSQL_DB_USER = 
+MYSQL_DB_PASSWORD = 
+MYSQL_DB_HOST = 
+LOG_LEVEL = ERROR
