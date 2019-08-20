@@ -41,7 +41,7 @@ class CrawleView(APIView):
 					href_links.append(link)
 			else:
 				print(link)
-		if level == '2':
+		if int(level) == 2:
 			# selector = Selector(response.text)
 			# submenu_menu_links = selector.xpath('//*[@id="navbar-collapse"]/ul/li/a/@href').getall()
 			# for i in submenu_menu_links:
@@ -66,7 +66,7 @@ class CrawleView(APIView):
 						image_urls.append(url+im)
 				elif search_domain in im:
 					image_urls.append(im)
-		elif level =='3':
+		elif int(level) ==3:
 			href_link = copy.deepcopy(href_links)
 			for i in href_link:
 				sub_menu_response = requests.get(i)
