@@ -1,4 +1,4 @@
-"""crawle URL Configuration
+"""crawler URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
@@ -22,5 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api-token-auth/', obtain_jwt_token),
-    path('crawle-site/', include('crawle_site.urls')),
+    path('crawler-site/', include('crawler_site.urls')),
 ]

@@ -4,5 +4,5 @@ from . import views
 router = routers.DefaultRouter()
 urlpatterns = [
 	path(r'', include(router.urls)),
-	path(r'crawle/',views.CrawleView.as_view()),
+	path(r'crawler/',views.CrawleView.as_view()),
 ]
